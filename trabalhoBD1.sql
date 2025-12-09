@@ -69,9 +69,6 @@ alter table farmacia
 	add foreign key (idtipofarmacia)
     references tipofarmacia (id);
 
-alter table farmacia 
-	add foreign key (idrepresentante)
-    references representante (id);
 
 create table representante (
     id int primary key,
