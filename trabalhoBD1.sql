@@ -1,3 +1,8 @@
+-- Julio César Carvalho de Paula Souza RA138288
+-- Guilherme Mayer Chamse Ddine RA140656
+CREATE DATABASE database;
+use database;
+
 CREATE TABLE venda (
     id int PRIMARY KEY,
     idproduto int,
@@ -19,7 +24,7 @@ CREATE TABLE laboratorio (
     id int PRIMARY KEY,
     idfarmacia int,
     nome varchar(50),
-    cnpj varchar(14) UNIQUE
+    cnpj int UNIQUE
 );
 
 CREATE TABLE principioAtivo (
@@ -32,7 +37,7 @@ CREATE TABLE representante (
     id int PRIMARY KEY,
     idfarmacia int,
     nome varchar(50),
-    cpf varchar(14) UNIQUE,
+    cpf int UNIQUE,
     endereco varchar(50)
 );
 
@@ -40,7 +45,7 @@ CREATE TABLE farmacia (
     id int PRIMARY KEY,
     idtipofarmacia int,
     nome varchar(50),
-    cnpj varchar(14) UNIQUE,
+    cnpj int,
     endereco varchar(50),
     venda double
 );
@@ -186,5 +191,24 @@ SELECT * FROM venda WHERE idProduto = 2;
 
 SELECT sum(valortotal) FROM venda;
 
-SELECT venda.id, venda.quantidade, venda.valortotal, produto.preco,
-	   produto.id, produto.nomeComercial FROM venda, produto;
+SELECT v.id, v.quantidade, v.valortotal, p.preco, p.id, p.nomeComercial 
+	   FROM venda as v, produto as p;
+
+SELECT v.id AS id_venda, p.nomeComercial AS produto, f.nome AS farmacia, v.valortotal
+	   FROM venda v
+	   JOIN produto p ON v.idproduto = p.id
+	   JOIN farmacia f ON v.idfarmacia = f.id;
+
+UPDATE produto SET preco = 27.50 WHERE id = 1;
+
+UPDATE farmacia SET endereco = 'Av. Brasil, 200 - Novo Prédio' WHERE id = 1;
+
+UPDATE representante SET nome = 'João da Silva Souza' WHERE id = 1;
+
+DELETE FROM venda WHERE id = 10;
+
+DELETE FROM produto WHERE id = 10;
+
+DELETE FROM laboratorio WHERE id = 10;
+
+DROP TABLE venda;
