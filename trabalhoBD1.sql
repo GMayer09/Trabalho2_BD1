@@ -19,7 +19,7 @@ CREATE TABLE laboratorio (
     id int PRIMARY KEY,
     idfarmacia int,
     nome varchar(50),
-    cnpj int UNIQUE
+    cnpj varchar(14) UNIQUE
 );
 
 CREATE TABLE principioAtivo (
@@ -32,7 +32,7 @@ CREATE TABLE representante (
     id int PRIMARY KEY,
     idfarmacia int,
     nome varchar(50),
-    cpf int UNIQUE,
+    cpf varchar(14) UNIQUE,
     endereco varchar(50)
 );
 
@@ -40,7 +40,7 @@ CREATE TABLE farmacia (
     id int PRIMARY KEY,
     idtipofarmacia int,
     nome varchar(50),
-    cnpj int,
+    cnpj varchar(14) UNIQUE,
     endereco varchar(50),
     venda double
 );
